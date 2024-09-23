@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Container Manager</title>
+    <script>
+        // 发送下发容器请求
+        function startContainer() {
+            // 显示 "Processing, please wait..." 消息
+            document.getElementById('result').innerText = 'Processing, please wait...';
+
+            fetch('/start_container', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                // 更新为实际返回的内容
+                document.getElementById('result').innerText = JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                document.getElementById('result').innerText = 'Error: ' + error;
+            });
+        }
+
+        // 发送销毁容器请求
+        function stopContainer() {
+            // 显示 "Processing, please wait..." 消息
+            document.getElementById('result').innerText = 'Processing, please wait...';
+
+            fetch('/stop_container', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                // 更新为实际返回的内容
+                document.getElementById('result').innerText = JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                document.getElementById('result').innerText = 'Error: ' + error;
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Container Manager</h1>
+    <button onclick="startContainer()">Start Container</button>
+    <button onclick="stopContainer()">Stop Container</button>
+    <pre id="result">Click a button to start or stop the container</pre> <!-- 默认显示的文本 -->
+</body>
+</html>
+
