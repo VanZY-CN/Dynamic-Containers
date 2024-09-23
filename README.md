@@ -3,6 +3,16 @@
 应用于不支持动态容器的CTF平台的场景
 
 ## Usage
+修改此处(3977)为你的镜像id，3000处为你需要映射的端口
+```
+container = client.containers.run(
+            "3977",
+            detach=True,
+            ports={'3000/tcp': host_port} 
+        )
+```
+
+
 ```
 python runContainer.py
 ```

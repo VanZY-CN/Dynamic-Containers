@@ -63,9 +63,9 @@ def start_container():
     # 创建新的容器，使用指定的镜像 ID 和随机端口映射
     try:
         container = client.containers.run(
-            "3977",  # 指定镜像 ID
-            detach=True,  # 后台运行容器
-            ports={'3000/tcp': host_port}  # 将容器的 3000 端口映射到随机选择的主机端口
+            "3977",
+            detach=True,
+            ports={'3000/tcp': host_port} 
         )
         container_id = container.short_id
         containers[ip_address] = {'container_id': container_id, 'port': host_port}
